@@ -6,6 +6,41 @@
     <title>Unity WebGL Player | 2D Top Down RPG</title>
     <link rel="shortcut icon" href="../TemplateData/favicon.ico">
     <link rel="stylesheet" href="../TemplateData/style.css">
+    <style>
+  /* Устанавливаем фон как на основном сайте */
+  body { 
+    background-color: #0d0d0d !important; 
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Стилизуем контейнер Unity (обычно это #unity-container) */
+  #unity-container {
+    box-shadow: 0 0 50px rgba(0, 255, 204, 0.2); /* Неоновое свечение вокруг игры */
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #161616;
+  }
+
+  /* Нижняя панель Unity (где кнопка Fullscreen) */
+  #unity-footer {
+    background: #161616 !important;
+    color: #888 !important;
+  }
+
+  /* Текст под игрой (если есть) делаем в стиле сайта */
+  .footer-text, #unity-build-title {
+    color: #00ffcc !important;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  }
+</style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
