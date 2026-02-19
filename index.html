@@ -4,48 +4,273 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEMAXI GAMES</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="hero">
-        <h1>BEMAXI GAMES</h1>
-        <p>Добро пожаловать в мир моих инди-проектов.</p>
-        <a href="#catalog" class="cta-button">СМОТРЕТЬ ИГРЫ</a>
-    </section>
-    <section class="catalog" id="catalog">
-        <div class="container">
-            <h2 class="section-title">Каталог игр</h2>
-            <div class="game-grid">
-                
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="cover.jpg" alt="Unity Shooter Cover" class="cover-image">
-                    </div>
-                    <div class="game-info">
-                        <h3>Unity Shooter</h3>
-                        <p>Динамичный экшен с исправленной системой прицеливания.</p>
-                        <a href="Build/index.html" target="_blank" class="play-small-btn">Играть</a>
+
+    <div class="cursor"></div>
+    <div class="cursor-trail"></div>
+    <canvas id="bgCanvas"></canvas>
+    <div class="noise-overlay"></div>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-grid-bg"></div>
+
+        <div class="status-bar">
+            <div class="status-bar-inner">
+                <span class="status-online"><span class="status-dot-live"></span>СТУДИЯ АКТИВНА</span>
+                <span class="status-divider">//</span>
+                <span class="status-item">ПРОЕКТОВ В РАБОТЕ: <strong>1</strong></span>
+                <span class="status-divider">//</span>
+                <span class="status-item">ДВИЖОК: <strong>UNITY</strong></span>
+                <span class="status-divider">//</span>
+                <span class="status-item">ЖАНРЫ: <strong>ACTION · ADVENTURE</strong></span>
+            </div>
+        </div>
+
+        <div class="hero-layout">
+
+            <!-- ТЕКСТ -->
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="dot"></span>
+                    <span>INDIE GAME STUDIO</span>
+                    <span class="dot"></span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="BEMAXI">BEMAXI</span>
+                    <span class="title-accent">GAMES</span>
+                </h1>
+                <p class="hero-sub">Добро пожаловать в мир моих инди-проектов.<br>Создаю игры, которые оставляют след.</p>
+                <div class="hero-actions">
+                    <a href="#catalog" class="cta-button" id="ctaBtn">
+                        <span class="btn-text">СМОТРЕТЬ ИГРЫ</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <div class="hero-stat">
+                        <span class="stat-num">2</span>
+                        <span class="stat-label">проекта</span>
                     </div>
                 </div>
-                
-                <!-- ВТОРАЯ КАРТОЧКА С ПОЛНОЙ АНИМАЦИЕЙ 👇 -->
-                <div class="game-card">
-    <div class="game-img">
-        <iframe src="mystery_card.html" 
-                frameborder="0" 
-                scrolling="no"
-                class="animated-cover"></iframe>
-    </div>
-    <div class="game-info">
-        <h3>Mystery Game</h3>
-        <p>Загадочное приключение ждёт тебя...</p>
-        <a href="#" class="play-small-btn">В разработке</a>
-    </div>
-</div>
-                
+                <div class="hero-mini-stats">
+                    <div class="mini-stat">
+                        <span class="mini-num" data-target="1">0</span>
+                        <span class="mini-label">игр выпущено</span>
+                    </div>
+                    <div class="mini-stat-divider"></div>
+                    <div class="mini-stat">
+                        <span class="mini-num" data-target="1">0</span>
+                        <span class="mini-label">в разработке</span>
+                    </div>
+                    <div class="mini-stat-divider"></div>
+                    <div class="mini-stat">
+                        <span class="mini-num" data-target="100">0</span>
+                        <span class="mini-label">% страсти</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- КРУЖКИ -->
+            <div class="hero-character-wrap">
+                <canvas id="characterCanvas" width="380" height="440"></canvas>
+                <div class="char-glow-ring"></div>
+                <div class="char-ground-shadow"></div>
+            </div>
+
+            <!-- ПРЕВЬЮ ИГР -->
+            <div class="hero-previews">
+                <div class="preview-card preview-card--1">
+                    <div class="preview-img">
+                        <img src="cover.jpg" alt="Unity Shooter">
+                    </div>
+                    <div class="preview-info">
+                        <span class="preview-tag live-dot">● ДОСТУПНА</span>
+                        <span class="preview-name">Unity Shooter</span>
+                    </div>
+                </div>
+                <div class="preview-card preview-card--2">
+                    <div class="preview-img preview-img--mystery">
+                        <iframe src="mystery_card.html" frameborder="0" scrolling="no" class="preview-iframe"></iframe>
+                    </div>
+                    <div class="preview-info">
+                        <span class="preview-tag wip-dot">● В РАЗРАБОТКЕ</span>
+                        <span class="preview-name">Mystery Game</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span>UNITY ENGINE</span><span class="ticker-sep">✦</span>
+                <span>INDIE GAMES</span><span class="ticker-sep">✦</span>
+                <span>ACTION SHOOTER</span><span class="ticker-sep">✦</span>
+                <span>MYSTERY ADVENTURE</span><span class="ticker-sep">✦</span>
+                <span>BEMAXI GAMES</span><span class="ticker-sep">✦</span>
+                <span>PIXEL ART</span><span class="ticker-sep">✦</span>
+                <span>GAME DEV</span><span class="ticker-sep">✦</span>
+                <span>COMING SOON</span><span class="ticker-sep">✦</span>
+                <span>UNITY ENGINE</span><span class="ticker-sep">✦</span>
+                <span>INDIE GAMES</span><span class="ticker-sep">✦</span>
+                <span>ACTION SHOOTER</span><span class="ticker-sep">✦</span>
+                <span>MYSTERY ADVENTURE</span><span class="ticker-sep">✦</span>
+                <span>BEMAXI GAMES</span><span class="ticker-sep">✦</span>
+                <span>PIXEL ART</span><span class="ticker-sep">✦</span>
+                <span>GAME DEV</span><span class="ticker-sep">✦</span>
+                <span>COMING SOON</span><span class="ticker-sep">✦</span>
+            </div>
+        </div>
+
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+            <span>SCROLL</span>
+        </div>
+    </section>
+
+    <!-- ══════════════ АВТОРЫ (отдельная секция, всегда видна) ══════════════ -->
+    <section class="authors-section" id="authors">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">// КОМАНДА</div>
+                <h2 class="section-title">Авторы <span class="title-accent">проекта</span></h2>
+                <p class="section-desc">Люди, которые создают эти миры.</p>
+            </div>
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-avatar-wrap">
+                        <div class="author-avatar-ring"></div>
+                        <div class="author-avatar-ring author-avatar-ring--2"></div>
+                        <img src="avatar_maxim.jpg" alt="Быстрянцев Максим" class="author-avatar">
+                        <div class="author-avatar-glow"></div>
+                    </div>
+                    <div class="author-info">
+                        <div class="author-index">01</div>
+                        <h3 class="author-name">Быстрянцев <span class="title-accent">Максим</span></h3>
+                        <p class="author-role">
+                            <span class="role-badge">Game Designer</span>
+                            <span class="role-badge">Developer</span>
+                        </p>
+                        <p class="author-desc">Создаёт игровые механики, пишет код и воплощает идеи в жизнь. Движущая сила проекта.</p>
+                        <div class="author-skills">
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Game Design</span>
+                            <span class="skill-tag">Level Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="authors-divider">
+                    <div class="authors-divider-line"></div>
+                    <span class="authors-divider-icon">✦</span>
+                    <div class="authors-divider-line"></div>
+                </div>
+                <div class="author-card author-card--right">
+                    <div class="author-avatar-wrap">
+                        <div class="author-avatar-ring author-avatar-ring--vadim"></div>
+                        <div class="author-avatar-ring author-avatar-ring--vadim2"></div>
+                        <img src="avatar_vadim.jpg" alt="Чепик Вадим" class="author-avatar author-avatar--vadim">
+                        <div class="author-avatar-glow author-avatar-glow--vadim"></div>
+                    </div>
+                    <div class="author-info">
+                        <div class="author-index">02</div>
+                        <h3 class="author-name">Чепик <span class="author-accent-vadim">Вадим</span></h3>
+                        <p class="author-role">
+                            <span class="role-badge role-badge--vadim">Art Director</span>
+                            <span class="role-badge role-badge--vadim">Designer</span>
+                        </p>
+                        <p class="author-desc">Отвечает за визуальную часть проекта. Создаёт арт, концепты и атмосферу игрового мира.</p>
+                        <div class="author-skills">
+                            <span class="skill-tag skill-tag--vadim">Pixel Art</span>
+                            <span class="skill-tag skill-tag--vadim">Concept Art</span>
+                            <span class="skill-tag skill-tag--vadim">UI/UX</span>
+                            <span class="skill-tag skill-tag--vadim">Animation</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- ══════════════ КАТАЛОГ (скрыт, открывается кнопкой) ══════════════ -->
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">// ПРОЕКТЫ</div>
+                <h2 class="section-title">Каталог <span class="title-accent">игр</span></h2>
+                <p class="section-desc">Каждая игра — отдельная вселенная.</p>
+            </div>
+            <div class="game-grid">
+                <div class="game-card" data-index="01">
+                    <div class="card-number">01</div>
+                    <div class="game-img">
+                        <img src="cover.jpg" alt="Unity Shooter Cover" class="cover-image">
+                        <div class="img-overlay">
+                            <a href="Build/index.html" target="_blank" class="overlay-play-btn">
+                                <span class="play-icon">▶</span>
+                                <span>ИГРАТЬ</span>
+                            </a>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-tags">
+                            <span class="tag">ACTION</span>
+                            <span class="tag">SHOOTER</span>
+                            <span class="tag live">ДОСТУПНА</span>
+                        </div>
+                        <h3>Unity Shooter</h3>
+                        <p>Динамичный экшен с переработанной системой прицеливания. Точность — твоё главное оружие.</p>
+                        <div class="game-footer">
+                            <a href="Build/index.html" target="_blank" class="play-small-btn">
+                                <span>Играть</span>
+                                <span class="btn-arrow-sm">↗</span>
+                            </a>
+                            <span class="engine-badge">Unity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card mystery-card" data-index="02">
+                    <div class="card-number">02</div>
+                    <div class="game-img">
+                        <iframe src="mystery_card.html" frameborder="0" scrolling="no" class="animated-cover" title="Mystery Game Preview"></iframe>
+                        <div class="card-glow mystery-glow"></div>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-tags">
+                            <span class="tag">ADVENTURE</span>
+                            <span class="tag">MYSTERY</span>
+                            <span class="tag wip">В РАЗРАБОТКЕ</span>
+                        </div>
+                        <h3>Mystery Game</h3>
+                        <p>Загадочное приключение ждёт тебя. Тайны, которые нужно раскрыть. Мир, который дышит.</p>
+                        <div class="game-footer">
+                            <a href="#" class="play-small-btn disabled">
+                                <span>Скоро</span>
+                                <span class="btn-arrow-sm">⏳</span>
+                            </a>
+                            <span class="engine-badge">TBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-line"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-logo">BEMAXI<span class="title-accent">.</span></span>
+                <span class="footer-copy">© 2025 — Все права защищены</span>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
